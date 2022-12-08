@@ -24,24 +24,83 @@ print(wings.artist)
 red.printSummary()
 wings.printSummary()
 
+//struct Employee {
+//    let name: String
+//    var vacationRemaining: Int
+//
+//    mutating func takeVacation(days: Int) {
+//        if vacationRemaining > days {
+//            vacationRemaining -= days
+//            print("I'm going on vacation!")
+//            print("Days remaining: \(vacationRemaining)")
+//        } else {
+//            print("Oops! There aren't enough days remaining.")
+//        }
+//    }
+//}
+
+//var archer = Employee(name: "Sterling Archer", vacationRemaining: 14)
+//archer.takeVacation(days: 5)
+//print(archer.vacationRemaining)
+
+
+// continue day 10 part 2 : https://www.hackingwithswift.com/quick-start/beginners/how-to-compute-property-values-dynamically
 struct Employee {
     let name: String
-    var vacationRemaining: Int
+    var vacationAllocated = 14
+    var vacationTaken = 0
 
-    mutating func takeVacation(days: Int) {
-        if vacationRemaining > days {
-            vacationRemaining -= days
-            print("I'm going on vacation!")
-            print("Days remaining: \(vacationRemaining)")
-        } else {
-            print("Oops! There aren't enough days remaining.")
+    var vacationRemaining: Int {
+        vacationAllocated - vacationTaken
+    }
+}
+
+var archer = Employee(name: "Sterling Archer", vacationAllocated: 14)
+archer.vacationTaken += 4
+print(archer.vacationRemaining)
+archer.vacationTaken += 4
+print(archer.vacationRemaining)
+
+// Taking actions when a property changes
+struct Game {
+    var score = 0 {
+        didSet {
+            print("Score is now \(score)")
         }
     }
 }
 
-var archer = Employee(name: "Sterling Archer", vacationRemaining: 14)
-archer.takeVacation(days: 5)
-print(archer.vacationRemaining)
+var game = Game()
+game.score += 10
+game.score -= 3
+game.score += 1
 
+struct App {
+    var contacts = [String]() {
+        willSet {
+            print("Current value is: \(contacts)")
+            print("New value will be: \(newValue)")
+        }
 
-// continue day 10 part 2 : https://www.hackingwithswift.com/quick-start/beginners/how-to-compute-property-values-dynamically
+        didSet {
+            print("There are now \(contacts.count) contacts.")
+            print("Old value was \(oldValue)")
+        }
+    }
+}
+
+var app = App()
+app.contacts.append("Adrian E")
+app.contacts.append("Allen W")
+app.contacts.append("Ish S")
+
+// Custom Initializers
+struct Player {
+    let name: String
+    let number: Int
+
+    init(name: String, number: Int) {
+        self.name = name
+        self.number = number
+    }
+}
