@@ -79,11 +79,11 @@ func third() {
 
 doImportantWork(first: first, second: second, third: third)
 doImportantWork {
-    print("first")
+    first()
 } second: {
-    print("second")
+    second()
 } third: {
-    print("third")
+    third()
 }
 
 // Checkpoint 5
