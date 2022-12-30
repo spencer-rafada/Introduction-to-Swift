@@ -51,5 +51,74 @@ joseph.work()
 let novall = Developer(hours: 8)
 novall.printSummary()
 
-// TODO: Continue on 'How to add initializers for classes
+// Initializers
+class Vehicle {
+    let isElectric: Bool
+
+    init(isElectric: Bool) {
+        self.isElectric = isElectric
+    }
+}
+
+class Car: Vehicle {
+    let isConvertible: Bool
+
+    init(isElectric: Bool, isConvertible: Bool) {
+        self.isConvertible = isConvertible
+        super.init(isElectric: isElectric)
+    }
+}
+
+let teslaX = Car(isElectric: true, isConvertible: false)
+
+// Copying a Class
+//class User {
+//    var username = "Anonymous"
+//}
+
+// Can safely copy a class without having to worry about the changes being changed for all instances
+//class User {
+//    var username = "Anonymous"
+//
+//    func copy() -> User {
+//        let user = User()
+//        user.username = username
+//        return user
+//    }
+//}
+//
+//var user1 = User()
+//var user2 = user1
+//user2.username = "Taylor"
+//
+//print(user1.username)
+//print(user2.username)
+
+// Deinitializers
+class User {
+    let id: Int
+
+    init(id: Int) {
+        self.id = id
+        print("User \(id): I'm alive!")
+    }
+
+    deinit {
+        print("User \(id): I'm dead!")
+    }
+}
+
+var users = [User]()
+
+for i in 1...3 {
+    let user = User(id: i)
+    print("User \(user.id): I'm in control!")
+    users.append(user)
+}
+
+print("Loop is finished!")
+users.removeAll()
+print("Array is clear!")
+
+// Continue How to work with variables inside classes
 //: [Next](@next)
