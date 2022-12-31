@@ -120,5 +120,57 @@ print("Loop is finished!")
 users.removeAll()
 print("Array is clear!")
 
-// Continue How to work with variables inside classes
+// Checkpoint 7
+class Animal {
+    let legs: Int
+    init(legs: Int) {
+        self.legs = legs
+    }
+}
+
+// Subclasses of Animal
+class Dog: Animal {
+    func speak() {
+        print("Woof Woof!")
+    }
+}
+
+class Cat: Animal {
+    var isTame: Bool
+    
+    init(isTame: Bool, legs: Int) {
+        self.isTame = isTame
+        super.init(legs: legs)
+    }
+    
+    func speak(){
+        print("Meow!")
+    }
+}
+
+// Subclasses of Dog
+final class Corgi: Dog {
+    override func speak() {
+        print("Bark Bark!")
+    }
+}
+
+final class Poodle: Dog {
+    override func speak() {
+        print("Aww Aww!")
+    }
+}
+
+// Subclasses of Cat
+final class Persian: Cat {
+    override func speak() {
+        print("Nyaw!")
+    }
+}
+
+final class Lion: Cat {
+    override func speak() {
+        print("Yeeaaaww!")
+    }
+}
 //: [Next](@next)
