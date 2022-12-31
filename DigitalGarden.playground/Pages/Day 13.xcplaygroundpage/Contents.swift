@@ -65,7 +65,99 @@ func getTravelEstimates(using vehicles: [Vehicle], distance: Int) {
 getTravelEstimates(using: [car, bike], distance: 150)
 
 
-// TODO: Continue Opaque Return Types
+// Extensions
+var quote = "   The truth is rarely pure and never simple   "
 
+let trimmed = quote.trimmingCharacters(in: .whitespacesAndNewlines)
+
+extension String {
+    func trimmed() -> String {
+        self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}
+
+let trimmed2 = quote.trimmed()
+
+// Protocol Extensions
+extension Collection {
+    var isNotEmpty: Bool {
+        isEmpty == false
+    }
+}
+
+let guests = ["Mario", "Luigi", "Peach"]
+
+if guests.isEmpty == false {
+    print("Guest count: \(guests.count)")
+}
+
+if guests.isNotEmpty {
+    print("Guest count: \(guests.count)")
+}
+
+protocol Person {
+    var name: String { get }
+    func sayHello()
+}
+
+// Now you don't have to declare sayHello unless you want to
+extension Person {
+    func sayHello() {
+        print("Hi, I'm \(name)")
+    }
+}
+
+struct Employee: Person {
+    let name: String
+}
+
+let taylor = Employee(name: "Taylor Swift")
+taylor.sayHello()
+
+// Checkpoint 8
+protocol Building {
+    var rooms: Int {get set}
+    var cost: Int {get set}
+    var name: String {get set}
+    
+    func printSales()
+}
+
+extension Building {
+    func printSales(){
+        print("It has \(rooms). It costs \(cost). It is managed by \(name)")
+    }
+}
+
+struct School: Building {
+    var rooms: Int
+    var cost: Int
+    var name: String
+}
+
+struct House: Building {
+    var rooms: Int
+    var cost: Int
+    var name: String
+    
+    func printSales() {
+        print("The house has \(rooms). It costs \(cost). It is managed by \(name)")
+    }
+}
+
+struct Office: Building {
+    var rooms: Int
+    var cost: Int
+    var name: String
+    
+    func printSales() {
+        print("The office has \(rooms). It costs \(cost). It is managed by \(name)")
+    }
+}
+
+let office = Office(rooms: 3, cost: 300000, name: "GSAMN")
+office.printSales()
+let school = School(rooms: 120, cost: 1000000, name: "ECC")
+school.printSales()
 
 //: [Next](@next)
